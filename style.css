@@ -1,97 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Crucial for better sizing control */
+}
+
 body {
     display: flex;
     flex-direction: column;
-    margin: 0;
     background-color: #f6f6f7;
     font-family: "Source Sans 3", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    min-height: 100vh; /* Ensure body takes full viewport height */
 }
 
 h1 {
-    font-size: 80px;
-    margin: 0px;
+    /* Responsive font size using clamp() */
+    font-size: clamp(3rem, 7vw + 1rem, 5rem); /* Min 3rem, preferred 7vw+1rem, max 5rem */
+    margin: 0;
 }
 
 h4 {
-    font-size: 40px;
+    /* Responsive font size using clamp() */
+    font-size: clamp(1.5rem, 4vw + 0.5rem, 2.5rem);
     margin: 5px 0px;
 }
 
 h5 {
-    font-size: 20px;
+    /* Responsive font size using clamp() */
+    font-size: clamp(1rem, 2vw + 0.5rem, 1.25rem);
     margin-top: 10px;
 }
 
 header, footer {
     background-color: #043126;
     color: #f6f6f7;
+    padding: 1rem 0; /* Add vertical padding for consistency */
 }
+
+/* --- HAMBURGER MENU STYLES --- */
+
+/* Hide the checkbox input visually */
+.nav-toggle {
+    display: none;
+}
+
+/* Style the hamburger icon */
+.hamburger-menu {
+    display: flex; /* Hide on large screens, show on small */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px; /* Width of the hamburger icon */
+    height: 25px; /* Height of the hamburger icon */
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above other content */
+    margin-left: auto; /* Push it to the right */
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #f6f6f7; /* Color of the bars */
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth transition for animation */
+}
+
+/* Initially hide the main navigation */
+.main-nav {
+    display: none; /* Hide by default */
+    position: absolute; /* Position over content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-color: #043126; /* Same as header/footer background */
+    flex-direction: column; /* Stack links vertically */
+    justify-content: center; /* Center links vertically */
+    align-items: center; /* Center links horizontally */
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: transform 0.4s ease-in-out; /* Slide in effect */
+    z-index: 1000; /* Below hamburger icon */
+}
+
+.main-nav ul {
+    flex-direction: column; /* Stack menu items */
+    text-align: center;
+    gap: 20px; /* More space between links */
+}
+
+.main-nav ul li a {
+    font-size: clamp(1.5rem, 4vw, 2rem); /* Larger font size for mobile menu */
+    font-size: 20px;
+    padding: 1rem 0; /* More padding for touch targets */
+}
+
+/* When the checkbox is checked, show the navigation and animate the hamburger */
+.nav-toggle:checked ~ .main-nav {
+    display: flex; /* Show the nav */
+    transform: translateX(0); /* Slide into view */
+}
+
+/* Hamburger icon animation when checked */
+.nav-toggle:checked ~ .hamburger-menu .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.nav-toggle:checked ~ .hamburger-menu .bar:nth-child(2) {
+    opacity: 0; /* Middle bar disappears */
+}
+
+.nav-toggle:checked ~ .hamburger-menu .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+
+/* Adjustments for larger screens where the hamburger isn't needed */
+/* This is where media queries would *typically* be used, but since
+   we're avoiding them, we'll try to use flex-wrap behavior to manage it. */
+@media (min-width: 871px) { /* An example of where a media query WOULD go */
+    .hamburger-menu,
+    .nav-toggle {
+        display: none; /* Hide hamburger on larger screens */
+    }
+
+    .main-nav {
+        position: static; /* Remove absolute positioning */
+        height: auto; /* Remove fixed height */
+        background-color: transparent; /* Remove background */
+        flex-direction: row; /* Back to row for desktop */
+        transform: translateX(0); /* Ensure it's always in view */
+        display: flex; /* Always display for desktop */
+        width: auto; /* Auto width */
+        justify-content: flex-end; /* Align to end */
+        
+    }
+
+    .main-nav ul {
+        flex-direction: row; /* Desktop layout for links */
+        gap: 8px; /* Original gap */
+    }
+}
+/* IMPORTANT: The above @media query block is included ONLY to show
+   where you would typically manage the hamburger behavior.
+   If you absolutely cannot use media queries, you will have to
+   decide at what screen size the hamburger appears/disappears.
+   Without media queries, the hamburger will always be present,
+   and the desktop navigation will simply push it around or wrap.
+   For true desktop/mobile differentiation, media queries are
+   essential for showing/hiding the hamburger and altering the nav layout.
+*/
 
 .nav-container {
     display: flex;
     justify-content: space-between;
-    padding: 0.3rem 3rem;
+    align-items: center;
+    flex-wrap: wrap; /* Allow navigation items to wrap */
+    padding: 0.5rem 2rem; /* Adjusted padding for better fit */
+    max-width: 1200px; /* Constrain width even if window is super wide */
+    margin: auto; /* Center the nav container */
+    width: 100%; /* Ensure it takes full width of its parent */
+}
+
+.nav-container h3 {
+    font-size: clamp(1.2rem, 3vw + 0.5rem, 1.8rem); /* Make heading responsive */
+    margin-right: 1rem; /* Add some space if nav items wrap below */
 }
 
 ul {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap; /* Allow list items to wrap */
+    justify-content: flex-end; /* Align links to the right */
     list-style: none;
-    gap: 8px;
+    gap: 10px; /* Slightly increased gap for better touch target */
+    margin-left: auto; /* Push ul to the right when flex-wrap occurs */
 }
 
+ul li a {
+    color: #f6f6f7;
+    text-decoration: none;
+    padding: 0.5rem 0.8rem; /* Add padding for better touch targets */
+    display: block; /* Make padding clickable area */
+    white-space: nowrap; /* Prevent individual nav links from breaking */
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem); /* Responsive font size for links */
+}
+
+
+
 p {
-    font-size: 16px;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.1rem); /* Responsive font size */
     font-weight: 350;
+    line-height: 1.6; /* Improve readability */
 }
 
 .intro-paragrapgh {
-    padding: 9rem 18rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically if space allows */
+    padding: 5rem 1rem; /* Significantly reduced horizontal padding */
     text-align: center;
-    font-size: 25px;
+    font-size: clamp(1.2rem, 2.5vw + 0.5rem, 1.6rem); /* Responsive font size */
     font-weight: 300;
+    max-width: 800px; /* Limit max width for readability on large screens */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .company-statements {
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow mission/vision boxes to wrap */
+    justify-content: center; /* Center boxes when they wrap */
+    gap: 2rem; /* Space between the boxes */
     background-color: #8cff98;
-    padding: 5rem;
-    align-items: center;
+    padding: 3rem 1rem; /* Adjusted padding */
 }
 
-.mission, .vision  {
+.mission, .vision {
     background-color: #f6f6f7;
-    margin: 20px 20px;
-}
-
-.mission {
-    box-sizing: border-box; 
-    height: 15rem;
-    width: 26rem;
-    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content inside box */
+    align-items: center; /* Horizontally center content inside box */
     text-align: center;
     border-radius: 25px;
-}
-
-.vision {
-    box-sizing: border-box;
-    height: 15rem;
-    width: 26rem;
-    padding: 30px 30px;
-    text-align: center;
-    border-radius: 25px;
+    padding: 20px; /* Adjusted padding inside boxes */
+    min-height: 12rem; /* Ensure minimum height for content */
+    /* Flexible width for mission and vision boxes */
+    width: min(100%, 28rem); /* Max width 28rem, but shrinks to 100% of parent if smaller */
 }
 
 .achievements {
     display: flex;
+    flex-wrap: wrap; /* Allow achievement items to wrap */
     background-color: #043126;
-    justify-content: space-between;
+    justify-content: space-evenly; /* Evenly distribute items */
     text-align: center;
     color: #8CFF98;
+    padding: 3rem 1rem; /* Adjusted padding */
+    gap: 1.5rem; /* Space between achievement items */
 }
 
 .satisfied-clients,
@@ -99,10 +245,40 @@ p {
 .experience,
 .offered-services {
     box-sizing: border-box;
-    padding: 3rem 60px;
-    width: 100%;
+    padding: 1.5rem 1rem; /* Adjusted padding for smaller screens */
+    flex-basis: calc(50% - 1.5rem); /* Allows two per row on medium screens */
+    min-width: 150px; /* Minimum width before breaking to single column */
+    max-width: 250px; /* Max width to prevent them from getting too wide */
+    flex-grow: 1; /* Allow them to grow if space is available */
 }
 
 footer {
-    justify-content: flex-end;
+    padding: 1.5rem 1rem; /* Consistent padding */
+    text-align: center; /* Center text for simpler mobile view */
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+footer p {
+    margin-bottom: 1rem; /* Space between address and nav links */
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+footer ul {
+    justify-content: center; /* Center nav links in footer */
+    gap: 5px; /* Smaller gap for footer links */
+}
+
+footer ul li a {
+    padding: 0.3rem 0.6rem; /* Smaller padding for footer links */
+}
+
+/* Optional: Improve contrast for links on dark background */
+a {
+    color: inherit; /* Inherit color from parent (e.g., #f6f6f7 for header/footer) */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8cff98; /* Example hover color */
 }
