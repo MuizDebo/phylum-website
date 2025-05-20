@@ -42,7 +42,12 @@ ul {
     gap: 8px;
 }
 
-.brief-intro {
+p {
+    font-size: 16px;
+    font-weight: 350;
+}
+
+.intro-paragrapgh {
     padding: 9rem 18rem;
     text-align: center;
     font-size: 25px;
