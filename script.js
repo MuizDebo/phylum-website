@@ -1,9 +1,9 @@
 const carouselInner = document.getElementById('carouselInner');
             const images = [
-                { src: '1.svg', text: 'Your No. 1 Engineering/Management Firm' },
-                { src: '2.svg', text: 'Real Estate Advisory and Consultancy' },
-                { src: '3.svg', text: 'Electrical Engineering' },
-                { src: '4.svg', text: 'Mechanical Engineering' }
+                { src: './images/1.svg', text: 'Your No. 1 Engineering/Management Firm' },
+                { src: './images/2.svg', text: 'Real Estate Advisory and Consultancy' },
+                { src: './images/3.svg', text: 'Electrical Engineering' },
+                { src: './images/4.svg', text: 'Mechanical Engineering' }
             ];
 
             let currentIndex = 0;
