@@ -163,7 +163,7 @@ header {
     flex-wrap: wrap; /* Allow navigation items to wrap */
     padding: 0.5rem 1rem; /* Adjusted padding for better fit */
     max-width: 1200px; /* Constrain width even if window is super wide */
-    margin: 0 50px; /* Center the nav container */
+    margin: auto; /* Center the nav container */
     width: 100%; /* Ensure it takes full width of its parent */
 }
 
