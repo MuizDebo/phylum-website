@@ -44,6 +44,13 @@ header {
     top: 0;
     z-index: 3;
 }
+
+.header-logo {
+            width: 5%;
+            text-align: center;
+        }
+
+
 /* --- HAMBURGER MENU STYLES --- */
 
 /* Hide the checkbox input visually */
