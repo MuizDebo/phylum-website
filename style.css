@@ -42,7 +42,7 @@ header, footer {
 header {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 3;
 }
 /* --- HAMBURGER MENU STYLES --- */
 
@@ -207,7 +207,8 @@ p {
             margin: 0; /* Center the carousel with some margin */
             position: relative;
             overflow: hidden;
-            aspect-ratio: auto; /* Maintain a common aspect ratio for images */
+            aspect-ratio: auto;
+            z-index: 1; /* Maintain a common aspect ratio for images */
         }
 
         .carousel-inner {
@@ -287,6 +288,12 @@ p {
                 font-size: 1.4rem;
             }
         }
+
+.brief-intro > h1 {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 50px;
+}
 
 .intro-paragrapgh {
     display: flex;
