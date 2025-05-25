@@ -36,9 +36,14 @@ h5 {
 header, footer {
     background-color: #043126;
     color: #f6f6f7;
-    padding: 1rem 0; /* Add vertical padding for consistency */
+    padding: 0; /* Add vertical padding for consistency */
 }
 
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 /* --- HAMBURGER MENU STYLES --- */
 
 /* Hide the checkbox input visually */
@@ -138,7 +143,7 @@ header, footer {
 
     .main-nav ul {
         flex-direction: row; /* Desktop layout for links */
-        gap: 8px; /* Original gap */
+        gap: 12px; /* Original gap */
     }
 }
 /* IMPORTANT: The above @media query block is included ONLY to show
@@ -156,9 +161,9 @@ header, footer {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap; /* Allow navigation items to wrap */
-    padding: 0.5rem 2rem; /* Adjusted padding for better fit */
+    padding: 0.5rem 1rem; /* Adjusted padding for better fit */
     max-width: 1200px; /* Constrain width even if window is super wide */
-    margin: auto; /* Center the nav container */
+    margin: 0 50px; /* Center the nav container */
     width: 100%; /* Ensure it takes full width of its parent */
 }
 
@@ -192,6 +197,96 @@ p {
     font-weight: 350;
     line-height: 1.6; /* Improve readability */
 }
+
+
+/*----- Image Carousel Image-----*/
+.carousel-section {
+            width: 100%;
+            height: 100%;
+            max-width: 100%; /* Max width for the carousel */
+            margin: 0; /* Center the carousel with some margin */
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: auto; /* Maintain a common aspect ratio for images */
+        }
+
+        .carousel-inner {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item {
+            min-width: 100%; /* Each item takes full width */
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Smooth fade transition */
+            display: flex; /* Use flex to center image within item if needed */
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Fallback background for images */
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+            position: relative; /* Active item should be in flow for proper layout */
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image fills the space without distortion */
+            display: block;
+        }
+
+        .carousel-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 5%; /* Middle left position */
+            transform: translateY(-50%);
+            background-color: rgba(4, 49, 38, 0.7); /* #043126 with 70% opacity */
+            color: #f6f6f7;
+            padding: 1.5rem 2.5rem;
+            border-radius: 0.5rem;
+            max-width: 70%; /* Limit text width */
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10; /* Ensure text is above image */
+        }
+
+        .carousel-text-overlay h1 {
+            margin: 0;
+            font-size: 2.5rem; /* Large font size for header */
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Responsive adjustments for text overlay */
+        @media (max-width: 768px) {
+            .carousel-text-overlay {
+                left: 2%;
+                padding: 1rem 1.5rem;
+                max-width: 90%;
+            }
+            .carousel-text-overlay h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-text-overlay {
+                left: 1%;
+                padding: 0.8rem 1rem;
+                max-width: 95%;
+            }
+            .carousel-text-overlay h1 {
+                font-size: 1.4rem;
+            }
+        }
 
 .intro-paragrapgh {
     display: flex;
