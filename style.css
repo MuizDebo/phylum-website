@@ -259,7 +259,6 @@ footer {
 }
 
 footer p {
-    margin-bottom: 1rem; /* Space between address and nav links */
     font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
@@ -287,59 +286,50 @@ a:hover {
 .footer {
             background-color: #043126; /* Dark green background */
             color: #f6f6f7; /* Light text color */
-            padding: 2rem;
             border-top-left-radius: 0.5rem;
             border-top-right-radius: 0.5rem;
-            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-logo {
+            width: 40%;
+            text-align: center;
         }
 
         .footer-container {
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
-            display: flex; /* Changed to flexbox */
-            flex-wrap: wrap; /* Allows items to wrap to the next line */
-            justify-content: space-between; /* Distributes items with space between them */
+            display: flex;
+            flex-wrap: wrap;
+            /* Changed to space-around to ensure space in between/middle of vertical quadrants */
+            justify-content: space-around;
             gap: 2rem; /* Gap between flex items */
+        }
+
+        /* All sections will now take roughly 50% width on all screen sizes to maintain four quadrants */
+        .footer-container > div {
+            flex: 1 1 calc(50% - 2rem); /* Two columns, accounting for gap */
+            max-width: calc(50% - 2rem);
+            /* Ensure left alignment for all content within these divs */
+            text-align: left;
+            align-items: flex-start; /* For flex containers inside */
         }
 
         /* Media queries for responsiveness */
         @media (min-width: 768px) { /* Medium screens */
-            .footer {
-                padding: 3rem;
-            }
             .footer-container {
-                /* For 2 columns on medium screens using flexbox */
-                flex-direction: row;
-                justify-content: space-between;
                 gap: 3rem;
             }
             .footer-container > div {
-                flex: 1 1 calc(50% - 1.5rem); /* Two columns, accounting for gap */
-                max-width: calc(50% - 1.5rem);
-            }
-            /* Adjust text and item alignment for medium screens */
-            .company-info,
-            .contact-info,
-            .quick-links,
-            .social-media {
-                text-align: left;
-                align-items: flex-start;
-            }
-            .contact-info p,
-            .social-media div {
-                justify-content: flex-start;
-            }
-            .quick-links ul {
-                align-items: flex-start;
+                flex: 1 1 calc(25% - 1.5rem); /* Two columns, accounting for gap */
+                max-width: calc(25% - 1.5rem);
             }
         }
 
         @media (min-width: 1024px) { /* Large screens */
             .footer-container {
                 /* For 4 columns on large screens using flexbox */
-                flex-direction: row;
-                justify-content: space-between;
+                justify-content: space-between; /* Distribute items more evenly on large screens */
             }
             .footer-container > div {
                 flex: 1 1 calc(25% - 1.5rem); /* Four columns, accounting for gap */
@@ -351,9 +341,8 @@ a:hover {
         .company-info {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centered on mobile */
-            text-align: center; /* Centered on mobile */
-            width: 100%; /* Take full width on small screens */
+            align-items: flex-start; /* Left aligned */
+            text-align: left; /* Left aligned */
         }
 
         .logo-placeholder {
@@ -386,8 +375,7 @@ a:hover {
         .contact-info,
         .quick-links,
         .social-media {
-            text-align: center; /* Centered on mobile */
-            width: 100%; /* Take full width on small screens */
+            text-align: left; /* Left aligned */
         }
 
         .section-title {
@@ -398,8 +386,8 @@ a:hover {
 
         .contact-info p {
             display: flex;
-            align-items: center; /* Vertically align icon and text */
-            justify-content: flex-start; /* Centered on mobile */
+            align-items: flex-start; /* Vertically align icon and text to the start */
+            justify-content: flex-start; /* Left aligned */
             margin-bottom: 0.5rem;
         }
 
@@ -410,6 +398,7 @@ a:hover {
         .contact-info p svg {
             margin-right: 0.5rem;
             flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-top: 0.2rem; /* Small adjustment for icon vertical alignment */
         }
 
         .quick-links ul {
@@ -418,7 +407,7 @@ a:hover {
             margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centered list items on mobile */
+            align-items: flex-start; /* Left aligned */
             gap: 0.5rem;
         }
 
@@ -429,12 +418,12 @@ a:hover {
         }
 
         .quick-links a:hover {
-            color: #a0aec0; /* Lighter gray on hover */
+            color: #8cff98; /* Lighter gray on hover */
         }
 
         .social-media div {
             display: flex;
-            justify-content: center; /* Centered on mobile */
+            justify-content: flex-start; /* Left aligned */
             gap: 1rem;
         }
 
@@ -444,13 +433,13 @@ a:hover {
         }
 
         .social-media a:hover {
-            color: #a0aec0; /* Lighter gray on hover */
+            color: #8CFF98; /* Lighter gray on hover */
         }
 
         .copyright-section {
-            border-top: 1px solid #4a5568; /* Gray border at the top */
+            border-top: 1px solid #8CFF98; /* Gray border at the top */
             margin-top: 2rem;
-            padding-top: 2rem;
+            padding-top: 1rem;
             text-align: center;
             font-size: 0.875rem;
         }
