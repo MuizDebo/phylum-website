@@ -45,6 +45,6 @@ const carouselInner = document.getElementById('carouselInner');
             }
 
             // Auto-scroll every 5 seconds
-            setInterval(showNextImage, 5000);
+            setInterval(showNextImage, 3000);
 
        
