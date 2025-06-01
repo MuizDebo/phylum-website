@@ -361,6 +361,30 @@ p {
     flex-grow: 1; /* Allow them to grow if space is available */
 }
 
+/*---Offerings*/
+.offerings {
+    display: flex;
+    flex-wrap: wrap; /* Allow achievement items to wrap */
+    background-color: #f6f6f7;
+    justify-content: space-evenly; /* Evenly distribute items */
+    text-align: center;
+    color: #374151;
+    padding: 3rem 1rem; /* Adjusted padding */
+    gap: 1.5rem; /* Space between achievement items */
+}
+
+.satisfied-clients,
+.completed-projects,
+.experience,
+.offered-services {
+    box-sizing: border-box;
+    padding: 1.5rem 1rem; /* Adjusted padding for smaller screens */
+    flex-basis: calc(50% - 1.5rem); /* Allows two per row on medium screens */
+    min-width: 150px; /* Minimum width before breaking to single column */
+    max-width: 250px; /* Max width to prevent them from getting too wide */
+    flex-grow: 1; /* Allow them to grow if space is available */
+}
+
 footer {
     padding: 1.5rem 1rem; /* Consistent padding */
     text-align: center; /* Center text for simpler mobile view */
@@ -551,4 +575,100 @@ a:hover {
             padding-top: 1rem;
             text-align: center;
             font-size: 0.875rem;
+        }
+
+
+        /*---- Services Section for the Home Page-----*/
+        .services-section {
+            padding: 4rem 1rem; /* py-16 px-4 */
+            max-width: 80rem; /* max-w-7xl */
+            margin: 0 auto; /* mx-auto */
+        }
+
+        /* Header styling */
+        .services-section h2 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            text-align: center; /* text-center */
+            color: #374151; /* text-gray-800 */
+            margin-bottom: 3rem; /* mb-12 */
+        }
+
+        /* Services Grid Container */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* grid-cols-1 */
+            gap: 2rem; /* gap-8 */
+        }
+
+        /* Responsive grid for medium screens */
+        @media (min-width: 768px) { /* md breakpoint */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+                padding-left: 1.5rem; /* sm:px-6 */
+                padding-right: 1.5rem; /* sm:px-6 */
+            }
+        }
+
+        /* Responsive grid for large screens */
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+                padding-left: 2rem; /* lg:px-8 */
+                padding-right: 2rem; /* lg:px-8 */
+            }
+        }
+
+        /* Service Card Styling */
+        .service-card {
+            background-color: #ffffff; /* bg-white */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            transition: box-shadow 0.3s ease-in-out; /* transition-shadow duration-300 */
+            overflow: hidden; /* overflow-hidden */
+        }
+
+        .service-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* hover:shadow-xl */
+        }
+
+        /* Image within card */
+        .service-card img {
+            width: 100%; /* w-full */
+            height: 12rem; /* h-48 */
+            object-fit: cover; /* object-cover */
+            border-top-left-radius: 0.75rem; /* rounded-t-xl */
+            border-top-right-radius: 0.75rem; /* rounded-t-xl */
+        }
+
+        /* Content padding within card */
+        .service-card-content {
+            padding: 1.5rem; /* p-6 */
+        }
+
+        /* Card title */
+        .service-card-content h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #111827; /* text-gray-900 */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+
+        /* Card description */
+        .service-card-content p {
+            color: #4B5563; /* text-gray-600 */
+            font-size: 1rem; /* text-base */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        /* "See more" link */
+        .service-card-content a {
+            color: #8B5CF6; /* text-purple-700 */
+            font-weight: 500; /* font-medium */
+            font-size: 0.875rem; /* text-sm */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .service-card-content a:hover {
+            color: #7C3AED; /* hover:text-purple-900 */
         }
