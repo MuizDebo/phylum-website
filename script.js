@@ -1,3 +1,7 @@
+var copy = document.querySelector(".logos-slide").cloneNode(true);
+document.querySelector(".logos").appendChild(copy);
+
+
 const carouselInner = document.getElementById('carouselInner');
             const images = [
                 { src: '1.png', text: 'Your No. 1 Engineering/Management Firm' },
